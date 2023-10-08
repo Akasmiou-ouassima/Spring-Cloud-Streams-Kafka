@@ -11,7 +11,7 @@
 
 ## Architecture
 <div align="center">
-<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/img.png">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/img.png" width="50%">
 </div>
 
 ## Les dépendances utilisés 
@@ -34,11 +34,11 @@ public class PageEventRestController {
 }
 ```
 <div align="center">
-<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/1.jpg">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/1.jpg" width="50%">
 </div>
->
+
 <div align="center">
-<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/2.jpg">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/2.jpg" width="50%">
 </div>
 
 ## Un Service Consumer KAFKA
@@ -56,7 +56,7 @@ public class PageEventService {
   }
 ```
 <div align="center">
-<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/3.jpg">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/3.jpg" width="50%">
 </div>
 
 ## Un Service Supplier KAFKA
@@ -70,7 +70,7 @@ public class PageEventService {
     }
 ```
 <div align="center">
-<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/4.jpg">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/4.jpg" width="50%">
 </div>
 
 ## Un Service Function KAFKA
@@ -85,7 +85,7 @@ public class PageEventService {
     }
   ```
 <div align="center">
-<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/5.jpg">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/5.jpg" width="50%">
 </div>
 
 ## Fichier de configuration
