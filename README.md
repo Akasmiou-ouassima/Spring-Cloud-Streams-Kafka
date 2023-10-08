@@ -11,7 +11,7 @@
 
 ## Architecture
 <div align="center">
-<img src="">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/img.png">
 </div>
 
 ## Les dépendances utilisés 
@@ -34,7 +34,11 @@ public class PageEventRestController {
 }
 ```
 <div align="center">
-<img src="">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/1.jpg">
+</div>
+>
+<div align="center">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/2.jpg">
 </div>
 
 ## Un Service Consumer KAFKA
@@ -51,6 +55,9 @@ public class PageEventService {
     }
   }
 ```
+<div align="center">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/3.jpg">
+</div>
 
 ## Un Service Supplier KAFKA
 ```java
@@ -62,6 +69,10 @@ public class PageEventService {
                 new Random().nextInt(9000));
     }
 ```
+<div align="center">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/4.jpg">
+</div>
+
 ## Un Service Function KAFKA
 ```java
 @Bean
@@ -73,6 +84,10 @@ public class PageEventService {
         };
     }
   ```
+<div align="center">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/5.jpg">
+</div>
+
 ## Fichier de configuration
 ```java
 spring.cloud.stream.bindings.pageEventConsumer-in-0.destination=R1
@@ -82,3 +97,5 @@ spring.cloud.stream.poller.fixed-delay=100
 spring.cloud.stream.bindings.pageEventFunction-in-0.destination=R1
 spring.cloud.stream.bindings.pageEventFunction-out-0.destination=R3
   ```
+
+
