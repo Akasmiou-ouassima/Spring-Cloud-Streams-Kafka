@@ -11,7 +11,7 @@
 
 ## Architecture
 <div align="center">
-<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/img.png" width="50%">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/img.png" width="65%">
 </div>
 
 ## Les dépendances utilisés 
