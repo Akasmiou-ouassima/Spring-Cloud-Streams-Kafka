@@ -40,7 +40,7 @@
     docker ps
 ```
 <div align="center">
-<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/8.jpg" width="50%">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/8.jpg" width="70%">
 </div>
 
 
