@@ -1,6 +1,7 @@
 # Spring-Cloud-Streams-Kafka
 **Création d'une application Spring Cloud Streams avec Kafka :**
 <ul>
+  <li>Démarrage de kafka avec docker (Créer le fichier docker-compose.yml,  Démarrer les conteneurs docker : zookeeper et kafka-broker, Tester avec Kafka-console-producer et kafka-console-consumer)</li>
   <li>Un Service Producer KAFKA via un Rest Controller</li>
   <li>Un Service Consumer KAFKA</li>
   <li>Un Service Supplier KAFKA</li>
@@ -12,6 +13,37 @@
 ## Architecture
 <div align="center">
 <img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/img.png" width="65%">
+</div>
+
+## Démarrage de kafka avec docker
+
+> Création de fichier docker compose 
+
+<div align="center">
+<img src="">
+</div>
+
+> Démarrage les conteneurs docker : zookeeper et kafka-broker
+
+```bash
+    docker-compose up -d
+```
+<div align="center">
+<img src="">
+</div>
+
+<div align="center">
+<img src="">
+</div>
+
+> Tester avec Kafka-console-producer et kafka-console-consumer
+
+<div align="center">
+<img src="">
+</div>
+
+<div align="center">
+<img src="">
 </div>
 
 ## Les dépendances utilisés 
