@@ -20,7 +20,7 @@
 > Création de fichier docker compose 
 
 <div align="center">
-<img src="">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/9.jpg" width="50%" >
 </div>
 
 > Démarrage les conteneurs docker : zookeeper et kafka-broker
@@ -29,21 +29,29 @@
     docker-compose up -d
 ```
 <div align="center">
-<img src="">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/6.jpg" width="50%">
 </div>
 
 <div align="center">
-<img src="">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/7.jpg" width="50%">
 </div>
+
+```bash
+    docker ps
+```
+<div align="center">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/8.jpg" width="70%">
+</div>
+
 
 > Tester avec Kafka-console-producer et kafka-console-consumer
 
 <div align="center">
-<img src="">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/10.jpg" width="50%">
 </div>
 
 <div align="center">
-<img src="">
+<img src="https://github.com/Akasmiou-ouassima/Spring-Cloud-Streams-Kafka/blob/master/captures/11.jpg" width="50%">
 </div>
 
 ## Les dépendances utilisés 
