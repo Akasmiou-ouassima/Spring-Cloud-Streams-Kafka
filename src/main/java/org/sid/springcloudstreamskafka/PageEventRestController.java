@@ -6,6 +6,7 @@ import org.apache.kafka.streams.state.KeyValueIterator;
 import org.apache.kafka.streams.state.QueryableStoreTypes;
 import org.apache.kafka.streams.state.ReadOnlyKeyValueStore;
 import org.apache.kafka.streams.state.ReadOnlyWindowStore;
+import org.sid.springcloudstreamskafka.entities.PageEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.binder.kafka.streams.InteractiveQueryService;
 import org.springframework.http.MediaType;
@@ -24,13 +25,22 @@ import java.util.Random;
 
 @RestController
 public class PageEventRestController {
-    @Autowired
     private StreamBridge streamBridge;
-    @Autowired
     private InteractiveQueryService interactiveQueryService;
-    @GetMapping("/publish/{topic}/{name}")
-    public PageEvent publish(@PathVariable String topic,@PathVariable String name){
-        PageEvent pageEvent=new PageEvent(name,Math.random()>0.5?"U1":"U2",new Date(),new Random().nextInt(9000));
+
+
+    public PageEventRestController(StreamBridge streamBridge, InteractiveQueryService interactiveQueryService) {
+        this.streamBridge = streamBridge;
+        this.interactiveQueryService = interactiveQueryService;
+    }
+
+    @GetMapping("publish/{topic}/{name}")
+    public PageEvent publish(@PathVariable String name, @PathVariable String topic){
+        PageEvent pageEvent=new PageEvent();
+        pageEvent.setName(name);
+        pageEvent.setDate(new Date());
+        pageEvent.setDuration(new Random().nextInt(1000));
+        pageEvent.setUser(Math.random()>0.5?"U1":"U2");
         streamBridge.send(topic,pageEvent);
         return pageEvent;
     }
@@ -39,16 +49,49 @@ public class PageEventRestController {
     public Flux<Map<String,Long>> analytics(){
         return Flux.interval(Duration.ofSeconds(1))
                 .map(seq->{
-                    Map<String,Long> stringLongMap=new HashMap<>();
-                    ReadOnlyWindowStore<String, Long> windowStore = interactiveQueryService.getQueryableStore("page-count", QueryableStoreTypes.windowStore());
+                    Map<String,Long> map=new HashMap<>();
+                    ReadOnlyKeyValueStore<String, Long> stats = interactiveQueryService.getQueryableStore("count-store", QueryableStoreTypes.keyValueStore());
                     Instant now=Instant.now();
-                    Instant from=now.minusMillis(5000);
-                    KeyValueIterator<Windowed<String>, Long> fetchAll = windowStore.fetchAll(from, now);
-                    while (fetchAll.hasNext()){
-                        KeyValue<Windowed<String>, Long> next = fetchAll.next();
-                        stringLongMap.put(next.key.key(),next.value);
+                    Instant from=now.minusSeconds(5);
+                    KeyValueIterator<String, Long> keyValueIterator = stats.all();
+                    while (keyValueIterator.hasNext()){
+                        KeyValue<String, Long> next = keyValueIterator.next();
+                        map.put(next.key,next.value);
                     }
-                    return stringLongMap;
-                }).share();
+                    return map;
+                });
     }
+    @GetMapping(value = "/analyticsWindows",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Map<String,Long>> analyticsWindows(){
+        return Flux.interval(Duration.ofSeconds(1))
+                .map(seq->{
+                    Map<String,Long> map=new HashMap<>();
+                    ReadOnlyWindowStore<String, Long> stats = interactiveQueryService.getQueryableStore("count-store", QueryableStoreTypes.windowStore());
+                    Instant now=Instant.now();
+                    Instant from=now.minusSeconds(30);
+                    KeyValueIterator<Windowed<String>, Long> windowedLongKeyValueIterator = stats.fetchAll(from, now);
+                    while (windowedLongKeyValueIterator.hasNext()){
+                        KeyValue<Windowed<String>, Long> next = windowedLongKeyValueIterator.next();
+                        map.put(next.key.key(),next.value);
+                    }
+                    return map;
+                });
+    }
+    @GetMapping(value = "/analyticsAggregate",produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+    public Flux<Map<String,Double>> analyticsAggregate(){
+        return Flux.interval(Duration.ofSeconds(1))
+                .map(seq->{
+                    Map<String,Double> map=new HashMap<>();
+                    ReadOnlyWindowStore<String, Double> stats = interactiveQueryService.getQueryableStore("total-store", QueryableStoreTypes.windowStore());
+                    Instant now=Instant.now();
+                    Instant from=now.minusSeconds(30);
+                    KeyValueIterator<Windowed<String>, Double> windowedLongKeyValueIterator = stats.fetchAll(from, now);
+                    while (windowedLongKeyValueIterator.hasNext()){
+                        KeyValue<Windowed<String>, Double> next = windowedLongKeyValueIterator.next();
+                        map.put(next.key.key(),next.value);
+                    }
+                    return map;
+                });
+    }
+
 }

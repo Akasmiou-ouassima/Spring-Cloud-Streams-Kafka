@@ -1,4 +1,4 @@
-package org.sid.springcloudstreamskafka;
+package org.sid.springcloudstreamskafka.service;
 
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
@@ -6,6 +6,7 @@ import org.apache.kafka.streams.kstream.Grouped;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.TimeWindows;
+import org.sid.springcloudstreamskafka.entities.PageEvent;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
